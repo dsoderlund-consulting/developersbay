@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "developersbay-frontend"
+  links:
+    - url: https://developersbay.sam.dsoderlund.consulting
+      title: CI/CD Deployment
+      icon: website
+spec:
+  type: website
+  owner: dsoderlund.consulting
+  lifecycle: experimental
+  subcomponentOf: "developersbay"
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "developersbay-backend"
+  links:
+    - url: https://developersbay.sam.dsoderlund.consulting/api
+      title: CI/CD Deployment
+      icon: service
+spec:
+  type: service
+  owner: dsoderlund.consulting
+  lifecycle: experimental
+  subcomponentOf: "developersbay"
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "developersbay"
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    argocd/app-selector: "component=developersbay"
+    github.com/project-slug: dsoderlund-consulting/developersbay
+  links:
+    - url: https://developersbay.sam.dsoderlund.consulting
+      title: CI/CD Deployment (frontend)
+      icon: website
+    - url: https://developersbay.sam.dsoderlund.consulting/api
+      title: CI/CD Deployment (backend)
+      icon: service
+spec:
+  type: service
+  owner: dsoderlund.consulting
+  lifecycle: experimental
+  system: demo-system
